@@ -13,10 +13,11 @@ import couponRoute from './routes/coupon'
 import commentRoute from './routes/comment'
 import path from 'path'
 import morgan from 'morgan'
+import dotenv from 'dotenv'
 
 const app = express();
-require('dotenv').config()
 
+dotenv.config()
 // const homeRoute = require('./routes/home');
 
 
