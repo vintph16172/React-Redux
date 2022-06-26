@@ -14,12 +14,12 @@ import commentRoute from './routes/comment'
 import path from 'path'
 import morgan from 'morgan'
 import dotenv from 'dotenv'
+import path from 'path';
 
 const app = express();
 
 dotenv.config()
-// const homeRoute = require('./routes/home');
-
+const __dirname = path.resolve();
 
 app.use(morgan("dev"));
 app.use(express.json());
