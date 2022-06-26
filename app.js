@@ -15,7 +15,7 @@ import path from 'path'
 import morgan from 'morgan'
 
 const app = express();
-
+require('dotenv').config()
 
 // const homeRoute = require('./routes/home');
 
@@ -38,9 +38,8 @@ app.use("/api",detailCartRoute)
 app.use("/api",couponRoute)
 app.use("/api",commentRoute)
 
-const uri = "mongodb+srv://vipro292002:vipro292002@cluster0.sa6qa6v.mongodb.net/test?retryWrites=true&w=majority";
-// mongoose.connect('mongodb://localhost:27017/nodeJS');
-mongoose.connect(uri,{
+
+mongoose.connect(process.env.MONGO_URI,{
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -48,18 +47,18 @@ mongoose.connect(uri,{
 // Bước 3: lắng nghe cổng thực thi
 
 
-// app.use(express.static(path.join(__dirname, "./frontend/build")));
+app.use(express.static(path.join(__dirname, "./cliend/build")));
 
-// app.get("*", function (_, res) {
-//   res.sendFile(
-//     path.join(__dirname, "./frontend/build/index.html"),
-//     function (err) {
-//       if (err) {
-//         res.status(500).send(err);
-//       }
-//     }
-//   );
-// });
+app.get("*", function (_, res) {
+  res.sendFile(
+    path.join(__dirname, "./cliend/build/index.html"),
+    function (err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    }
+  );
+});
 
 const port = process.env.PORT || 8000
 
